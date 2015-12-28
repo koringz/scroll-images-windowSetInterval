@@ -13,31 +13,29 @@
  * $version 0.3
  *
  */
+
+ /*
+ *
+ *
+ * 首先，你需要导入外部js：koringz.js
+ *
+ *
+ */
+
 var start_event, arr_class, init, Prev, Next, input_left, input_right, Container, Content, Grid, Next_grid, Img, style_img, i, j, default_img_width, all_img_length, current_img_length, half, Timer, current_scroll_Width, scroll_Width, speed;
 
-function s(attr_name, element) {
-	if (!element) {
-		element = document
-	}
-	return element.querySelector(attr_name)
-};
-
-Content = s('.content');
-Grid = s('#grid');
-Grid.innerHTML += Grid.innerHTML;
-Next_grid = s('.next_grid');
-Img = Grid.querySelectorAll('a');
-input_left = s('.Left');
-input_right = s('.Right');
+Content = getElementNode('.content');
+Grid = getElementNode('#grid');
+Next_grid = getElementNode('.next_grid');
+Img = Grid.getElementsByTagName('a');
+input_left = getElementNode('.Left');
+input_right = getElementNode('.Right');
 default_img_width = Img[0].offsetWidth; // 默认图片的宽度
 all_img_length = Img.length; // 图片的总数目
 current_img_length = 0; // 当前图片数目 
 half = all_img_length / 2; // 一半的图片数目
 Timer = null;
-
-function auto() {
-	scroll_right()
-};
+Grid.innerHTML += Grid.innerHTML;
 
 function scroll(grid, finally_distance) {
 	if (Timer !== null && Timer !== undefined) {
@@ -93,14 +91,5 @@ function scroll_right() {
 	ready()
 };
 
-
-!function() {
-
-	/******* 导入外部代码 *******/
-	/*      https://github.com/koringz/koringz-hack-windowAddLister/blob/master/addLister.js       */
-	/******* 导入外部代码 *******/
-
-	addLister(input_left, "click", scroll_left)
-	addLister(input_right, "click", scroll_right)
-
-}();
+addLister(input_left, "click", scroll_left);
+addLister(input_right, "click", scroll_right);
