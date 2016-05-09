@@ -9,3 +9,10 @@ scroll to brodcast
 新增鼠标事件(鼠标的划入/划出).
 新增自动滚动.
 ````
+## Platform
+
+* firefox
+* chrome
+* opera
+* safira
+* ie8+
