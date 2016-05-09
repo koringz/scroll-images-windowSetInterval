@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>click button and scroll the photo </title>
+        <link rel="stylesheet" href="css/scroll_second.css">
+  </head>
+  <body>
+    
+    <div class='container'>
+          <div class='content'  id='content'>
+                <span class='Left' id='Left'>&lt;</span>
+                <span class='Right' id='Right'>&gt;</span>
+                <div class='grid' id = "grid" style="position: absolute; display: inline-block; width: 7200px; left: 0;height: 290px; overflow: hidden;">
+                  <a>
+                    <img src='images/1.jpg'>
+                    <span></span>
+                  </a>
+                  <a>
+                    <img src='images/2.jpg'>
+                    <span></span>
+                  </a>
+                  <a>
+                    <img src='images/3.jpg'>
+                    <span></span>
+                  </a>
+                  <a>
+                    <img src='images/4.jpg'>
+                    <span></span>
+                  </a>
+                  <a>
+                    <img src='images/5.jpg'>
+                    <span></span>
+                  </a>
+                  <a>
+                    <img src='images/6.jpg'>
+                    <span></span>
+                  </a>
+                  <a>
+                    <img src='images/7.jpg'>
+                    <span></span>
+                  </a>
+                  <a>
+                    <img src='images/8.jpg'>
+                    <span></span>
+                  </a>
+                </div>
+          </div>
+
+    </div>
+    
+<script type="text/javascript" src="lib/koringz.util.js"></script>
+<script type="text/javascript" src="js/scroll.package.js"></script>
+<!-- <script type="text/javascript" src="js/package.min/scroll.package.min.js"></script> -->
+<script type="text/javascript">
+
+
+var input_left, input_right, Grid,Img;
+
+
+    Grid = getElementNode('#grid');
+    Img = Grid.getElementsByTagName('a');
+
+
+    // 点击事件
+    input_left = getElementNode('#Left');
+    input_right = getElementNode('#Right');
+
+
+
+
+            // 监听事件
+            var it =new init();
+            input_left.onclick = function(){
+              (new init()).scroll_left(Grid,{
+                all_img_length : Grid.getElementsByTagName('a')
+              })
+            };
+
+            input_right.onclick = function(){
+              (new init()).scroll_right(Grid,{
+                all_img_length : Img
+              })
+            };
+</script>
+</body>
+</html>
