@@ -15,35 +15,27 @@
                 <div class='grid' id = "grid">
                   <a>
                     <img src='images/1.jpg'>
-                    <span></span>
                   </a>
                   <a>
                     <img src='images/2.jpg'>
-                    <span></span>
                   </a>
                   <a>
                     <img src='images/3.jpg'>
-                    <span></span>
                   </a>
                   <a>
                     <img src='images/4.jpg'>
-                    <span></span>
                   </a>
                   <a>
                     <img src='images/5.jpg'>
-                    <span></span>
                   </a>
                   <a>
                     <img src='images/6.jpg'>
-                    <span></span>
                   </a>
                   <a>
                     <img src='images/7.jpg'>
-                    <span></span>
                   </a>
                   <a>
                     <img src='images/8.jpg'>
-                    <span></span>
                   </a>
                 </div>
           </div>
@@ -52,25 +44,28 @@
     
 <script type="text/javascript" src="lib/koringz.util.js"></script>
 <script type="text/javascript" src="js/scroll.package.js"></script>
-<!-- <script type="text/javascript" src="js/package.min/scroll.package.min.js"></script> -->
 <script type="text/javascript">
 (function(){
 
-      var N = getElementNode('#grid'),Img = N.getElementsByTagName('a'),IL = getElementNode('#Left'),IR = getElementNode('#Right'),
+      var N = getElementNode('#grid'),
+          Img = N.getElementsByTagName('a'),
+          IL = getElementNode('#Left'),
+          IR = getElementNode('#Right'),
           ai = {
             all_img : Img
-          };
+          },
+          KL,
+          KR;
 
-      var KL = function(){
+      KL = function(){
         k.previous(N,ai)
       };
-      var KR = function(){
+      KR = function(){
         k.next(N,ai)
       };
 
       IL.onclick = KL;
       IR.onclick = KR;
-
   })()
 </script>
 </body>
