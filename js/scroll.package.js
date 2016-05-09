@@ -21,51 +21,70 @@
  *
  */
 
-// var current_img_number = cout = 0,setTime =  {};
-var cout = 0,current_img_number = 0,setTimes =  null;
+(function (w) {
+	var cout = 0,current_img_number = 0,setTimes =  null,koringz,koringsition;
 
-var init = function init (elem,options) {
-	this.elems = 1;
-} 
 
-init.prototype = {
-	scroll_left : function (elem,options) {
+	koringz = function () {};
+
+	koringz.prototype.get = function (elem,options) {
+		// 这是一个存放东西的仓库，我可以获得参数
+		/*
+			options {
+	        	all_img : Img
+			}
+		*/
+		this.all_img = options.all_img;
+		// 图片列的长度
+		this.all_img_number = this.all_img.length;
+		// 默认图片的宽度
+		this.default_img_width = this.all_img[0].offsetWidth;
+		// 图片的一半长度
+		this.half = this.all_img_number/2;
+	};
+
+	koringz.prototype.previous = function (elem,options) {
+		// 这是下一张图片的调用逻辑
 			cout++;
 			this.get(elem,options);
 			if (cout == 1) {
 				elem.innerHTML += elem.innerHTML;
-				elem.style.width = (this.half.offsetWidth)*4 + 'px';
+				elem.style.width = (this.default_img_width)*this.all_img_number*2 + 'px';
 			}
-			
 			if (current_img_number > 0) {
 				current_img_number -= 1;
-			} 
+			}
 			else {
 				current_img_number = this.half - 1;
-				elem.style.width = (this.half.offsetWidth)*4 + 'px';
+				elem.style.left = -this.default_img_width * this.half + 'px';
 			}
 			this.readyStatus(elem)
-	},
-	scroll_right : function (elem,options) {
+	};
+
+	koringz.prototype.next = function (elem,options) {
+		// 这是下一张图片的调用逻辑
 			cout++;
 			this.get(elem,options);
 			if (cout == 1) {
 				elem.innerHTML += elem.innerHTML;
-				elem.style.width = 14400 + 'px';
+				elem.style.width = (this.default_img_width)*this.all_img_number*2 + 'px';
 			}
 			if (current_img_number < this.all_img_number - 1) {
 				current_img_number += 1;
-			} else {
+			}
+			else {
 				current_img_number = this.half;
 				elem.style.left = -this.default_img_width * (this.half - 1) + 'px';
 			}
 			this.readyStatus(elem)
-	},
-	readyStatus : function (el) {
+	};
+
+	koringz.prototype.readyStatus = function (el) {
 		this.current_scroll_Width = -(this.default_img_width * current_img_number);
 		this.scroll(el, this.current_scroll_Width)
-	},
-	scroll : function (elem,currentscrollwidth) {
+	};
+
+	koringz.prototype.scroll = function (elem,currentscrollwidth) {
 		if (setTimes !== null && setTimes !== undefined) {
 			clearInterval(setTimes)
 		}
@@ -76,7 +95,7 @@ init.prototype = {
 			speed = (currentscrollwidth - scroll_Width) / 6; // 从开始为100ms 到结束为0ms 
 			speed = speed < 0 ? Math.floor(speed) : Math.ceil(speed);
 
-			if (scroll_Width !== currentscrollwidth) { 
+			if (scroll_Width !== currentscrollwidth) {
 				var v = scroll_Width + speed;
 				elem.style.left = v + 'px';
 			} else {
@@ -84,28 +103,19 @@ init.prototype = {
 				setTimes = null;
 			}
 		}, 36);
-	},
-	get : function (elem,options) {
-		// 获得参数
-		var o = this.obj();
-		this.Timer = o.Timer;
-		
-		this.all_img_number = (options.all_img_length).length;
-		this.default_img_width = (options.all_img_length)[0].offsetWidth;
-		this.half = this.all_img_number/2;
-	},
-	obj:function () {
-		// 设置默认参数
-		this.obj_init = {
-			setTime : null,
-			Timer : null,
-		};
-		return this.obj_init;
-	}
-};
+	};
+
+	koringsition = function () {
+		return new koringz();
+	}();
+
+	w.k = koringsition;
+
+})(window)
 
 
-// 修复了全局变量为原型对象的属性
+
+
 
 
 
@@ -117,10 +127,16 @@ init.prototype = {
 */
 
 
-/*
+/*	
+	避免了全局变量的实现
 	点击第一次，让他自动添加一个滚动的图片数目
+	修复了全局变量为原型对象的属性
+	修复了调用函数使用对象即可
+	如何去掉innerhtml，改为设置left达到滚动的效果
 	cout++;
 	if (cout == 1) {
 		elem.innerHTML += elem.innerHTML;
 	}
+	
+	(function (koringz) {})(window);
 */

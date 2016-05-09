@@ -41,6 +41,12 @@ body {
   z-index: 100;
 }
 .container .content .grid {
+  position: absolute; 
+  display: inline-block; 
+  width: 7200px; 
+  left: 0;
+  height: 290px; 
+  overflow: hidden;
   z-index: 98;
   /*background-color: #881114;*/
 }
@@ -58,7 +64,7 @@ body {
   vertical-align: middle;
 }
 .container .content a img{
-	margin-top: 10px;
+  margin-top: 10px;
   font-size: 100%;
   width:100%
 }

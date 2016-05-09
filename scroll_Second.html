@@ -12,7 +12,7 @@
           <div class='content'  id='content'>
                 <span class='Left' id='Left'>&lt;</span>
                 <span class='Right' id='Right'>&gt;</span>
-                <div class='grid' id = "grid" style="position: absolute; display: inline-block; width: 7200px; left: 0;height: 290px; overflow: hidden;">
+                <div class='grid' id = "grid">
                   <a>
                     <img src='images/1.jpg'>
                     <span></span>
@@ -54,35 +54,24 @@
 <script type="text/javascript" src="js/scroll.package.js"></script>
 <!-- <script type="text/javascript" src="js/package.min/scroll.package.min.js"></script> -->
 <script type="text/javascript">
+(function(){
 
+      var N = getElementNode('#grid'),Img = N.getElementsByTagName('a'),IL = getElementNode('#Left'),IR = getElementNode('#Right'),
+          ai = {
+            all_img : Img
+          };
 
-var input_left, input_right, Grid,Img;
+      var KL = function(){
+        k.previous(N,ai)
+      };
+      var KR = function(){
+        k.next(N,ai)
+      };
 
+      IL.onclick = KL;
+      IR.onclick = KR;
 
-    Grid = getElementNode('#grid');
-    Img = Grid.getElementsByTagName('a');
-
-
-    // 点击事件
-    input_left = getElementNode('#Left');
-    input_right = getElementNode('#Right');
-
-
-
-
-            // 监听事件
-            var it =new init();
-            input_left.onclick = function(){
-              (new init()).scroll_left(Grid,{
-                all_img_length : Grid.getElementsByTagName('a')
-              })
-            };
-
-            input_right.onclick = function(){
-              (new init()).scroll_right(Grid,{
-                all_img_length : Img
-              })
-            };
+  })()
 </script>
 </body>
 </html>
